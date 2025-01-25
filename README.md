@@ -43,3 +43,8 @@ CSC_309_Facial_Recognition/
 │   └── man1.jpg               # Example input image
 ├── Docs                       # Documentation
 ```
+## Run the program using
+
+```
+python main.py
+```
