@@ -41,4 +41,5 @@ CSC_309_Facial_Recognition/
 │   ├── face_detection.py      # Contains the detect_face_and_display function
 ├── pictures/                  # Folder for images
 │   └── man1.jpg               # Example input image
+├── Docs                       # Main entry point
 ```
