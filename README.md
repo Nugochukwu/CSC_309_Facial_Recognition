@@ -17,6 +17,7 @@ Future enhancements include implementing face matching and feature extraction to
 Prerequisites
 
 Before running the program, ensure you have the following installed:
+`Git Repository files`
 
 `Python (version 3.7 or higher)`
 
