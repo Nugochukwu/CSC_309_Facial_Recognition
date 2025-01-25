@@ -1,8 +1,8 @@
 # Face Detection Using Haar Cascade Classifier
 
-This project implements a face detection system using Python's OpenCV library and the pre-trained Haar Cascade classifier. The program detects faces in an input image and displays the result with bounding boxes drawn around detected faces.
+This project demonstrates a face detection system implemented using Python's OpenCV library and a pre-trained Haar Cascade classifier. The program detects faces in an input image and displays the results by drawing bounding boxes around the detected faces.
 
-Further functionality to be added are face matching and feature extraction inorder to differentiate pictures not in the dataset and to calculate the accuracy of the prediction system
+Future enhancements include implementing face matching and feature extraction to distinguish images not present in the dataset, as well as evaluating the system's accuracy to ensure reliable predictions.
 
 
 ---
