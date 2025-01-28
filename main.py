@@ -1,14 +1,12 @@
+import os
 from src.face_detection import detect_face_and_display
 from src.feature_extraction import extract_features
 from src.face_matching import match_faces
 
-        # here we will add the functionality to detect a face,
-        # extract its features
-        # then match newly detected faces with the ones stored in our dataset.
-# Main function
 def main():
+    pictures_dir = 'pictures/'  # Path to the pictures folder
+
     while True:
-        # Ask the user where to save the detected faces
         print("\nWhere would you like to save the detected faces?")
         print("1. Detected Faces Directory (default: 'detected_faces/')")
         print("2. Dataset Directory (default: 'dataset/')")
@@ -16,29 +14,33 @@ def main():
 
         choice = input("Enter your choice (1, 2, or 3): ").strip()
 
-        if choice == '3':  # Exit condition
+        if choice == '3':
             print("Exiting the program.")
             break
 
-        if choice == '2':
-            image_output_dir = 'dataset/'
-        else:
-            image_output_dir = 'detected_faces/'
+        image_output_dir = 'dataset/' if choice == '2' else 'detected_faces/'
 
-        # Define the image path
-        image_path = 'pictures/man1.jpg'
+        # Get list of images in the pictures folder
+        image_files = [f for f in os.listdir(pictures_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
 
-        try:
-            # Detect faces, extract features, and match faces
-            print(f"Saving detected faces to: {image_output_dir}")
-            detect_face_and_display(image_path, image_output_dir)
-            extract_features()
-            match_faces()
-        except FileNotFoundError as e:
-            print(f"Error: {e}")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+        if not image_files:
+            print("No images found in the 'pictures/' directory.")
+            continue
 
+        # Process each image
+        for image_name in image_files:
+            image_path = os.path.join(pictures_dir, image_name)
+            print(f"\nProcessing {image_name}...")
+
+            try:
+                detect_face_and_display(image_path, image_output_dir)
+                extracted_features = extract_features(image_path)  # Pass the image path
+                if extracted_features is not None:
+                    match_faces(extracted_features)  # Pass extracted features
+            except FileNotFoundError as e:
+                print(f"Error: {e}")
+            except Exception as e:
+                print(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
     main()
