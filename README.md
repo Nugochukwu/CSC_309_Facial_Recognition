@@ -36,13 +36,16 @@ pip install opencv-python matplotlib
 Directory Structure
 ```
 CSC_309_Facial_Recognition/
+
+├── dataset                    # Faces that are allowed access
+├── detected_faces             # Faces detected
+├── Docs                       # Documentation
 ├── main.py                    # Main entry point
 ├── src/                       # Source code folder
 │   ├── __init__.py            # Marks the directory as a package
 │   ├── face_detection.py      # Contains the detect_face_and_display function
 ├── pictures/                  # Folder for images
 │   └── man1.jpg               # Example input image
-├── Docs                       # Documentation
 ```
 ## Run the program using
 
