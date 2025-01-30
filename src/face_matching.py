@@ -9,14 +9,14 @@ print("📜 Files:", os.listdir(os.getcwd()))
 
 pickle_path = "face_database.pkl"  # Change to "known_faces.pickle" if needed
 
-# Load known faces from pickle file
+# Load known faces from pickle file (persisting database)
 if os.path.exists(pickle_path):
     with open(pickle_path, "rb") as f:
         known_faces = pickle.load(f)
     print("✅ Known faces loaded successfully!")
 else:
-    print(f"❌ Error: '{pickle_path}' file not found!")
-    known_faces = {}  # Avoid crashing if the file is missing
+    print(f"❌ Error: '{pickle_path}' file not found! Creating a new database...")
+    known_faces = {}  # Initialize an empty dictionary
 
 
 def match_faces(new_image_path, known_faces, threshold=0.6):
@@ -38,7 +38,6 @@ def match_faces(new_image_path, known_faces, threshold=0.6):
         print(f"❌ No face detected in {new_image_path}.")
         return "Unknown", None, None  # Early return if no features were detected
 
-    # Debugging: Print the type of new_features
     print(f"Features extracted for {new_image_path}: {type(new_features)}")
 
     best_match = None
@@ -50,25 +49,23 @@ def match_faces(new_image_path, known_faces, threshold=0.6):
 
     for name, stored_features in known_faces.items():
         # Ensure stored features are valid
-        if stored_features is None:
-            print(f"❌ Skipping {name} because its stored features are invalid.")
+        if stored_features is None or not isinstance(stored_features, np.ndarray):
+            print(f"❌ Skipping {name} due to invalid stored features.")
             continue  # Skip invalid stored features
 
-        # Debugging: Print the type of stored features
-        # print(f"Matching {name}: {type(stored_features)}")
-
+        # Compute distance & similarity
         distance = np.linalg.norm(new_features - stored_features)  # Euclidean distance
         similarity = 1 / (1 + distance)  # Euclidean similarity
+
+        print(f"Matching {new_image_path} with {name}... (Distance: {distance:.4f}, Similarity: {similarity:.4f})")
 
         if distance < min_distance:  # Update the closest match
             min_distance = distance
             best_match = name
-            print(f"Matching {new_image_path} Face with {name}... (Distance: {distance:.4f}, Similarity: {similarity:.4f})")
 
     # Check if the best match is within the threshold
     if min_distance < threshold:
-        print(
-            f"✅ Best match to {new_image_path} is: {best_match} (Distance: {min_distance:.4f}, Similarity: {1 / (1 + min_distance):.4f})")
+        print(f"✅ Best match to {new_image_path} is: {best_match} (Distance: {min_distance:.4f}, Similarity: {1 / (1 + min_distance):.4f})")
         return best_match, min_distance, 1 / (1 + min_distance)
     else:
         print(f"❌ No match found for {new_image_path} within the threshold.")
