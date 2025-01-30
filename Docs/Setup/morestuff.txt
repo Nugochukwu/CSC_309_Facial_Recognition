@@ -1,0 +1,7 @@
+python libraries used:
+cv2
+dlib
+os
+pickle(built-in): pickle is a built-in Python library used for serializing (saving) and deserializing
+(loading) Python objects. It allows you to store Python
+data structures, such as dictionaries and lists, in a binary file and reload them later
