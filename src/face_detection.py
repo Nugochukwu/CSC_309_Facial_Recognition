@@ -32,7 +32,7 @@ def detect_face_and_display(image_path, output_dir,choice, image_name):
         face_img = img[y:y + h, x:x + w]
         choice = int(choice)
         if choice == 2:
-            face_file_path = os.path.join(output_dir, f"{image_name}.png")
+            face_file_path = os.path.join(output_dir, f"dataset_face_{face_counter}.png")
         elif choice == 1:
             face_file_path = os.path.join(output_dir, f"detected_face_{face_counter}.png")
         cv2.imwrite(face_file_path, face_img)
