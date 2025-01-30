@@ -43,4 +43,5 @@ def detect_face_and_display(image_path, output_dir):
     plt.figure(figsize=(10, 5))
     plt.imshow(img_rgb)
     plt.axis('off')
-    plt.show()
+   # plt.show()
+    plt.close()
