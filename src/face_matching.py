@@ -8,7 +8,6 @@ print("📂 Current Directory:", os.getcwd())
 print("📜 Files:", os.listdir(os.getcwd()))
 
 pickle_path = "face_database.pkl"  # Change to "known_faces.pickle" if needed
-image_path = "p1_3.png"
 
 # Load known faces from pickle file
 if os.path.exists(pickle_path):
