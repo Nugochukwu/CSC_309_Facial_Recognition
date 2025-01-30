@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # Global counter for unique face filenames
 face_counter = 1
 
-def detect_face_and_display(image_path, output_dir):
+def detect_face_and_display(image_path, output_dir,choice, image_name):
     global face_counter  # Use a global counter to ensure sequential naming
 
     if not os.path.exists(output_dir):
@@ -30,7 +30,11 @@ def detect_face_and_display(image_path, output_dir):
     for (x, y, w, h) in faces:
         global face_counter
         face_img = img[y:y + h, x:x + w]
-        face_file_path = os.path.join(output_dir, f"face_{face_counter}.png")
+        choice = int(choice)
+        if choice == 2:
+            face_file_path = os.path.join(output_dir, f"{image_name}.png")
+        elif choice == 1:
+            face_file_path = os.path.join(output_dir, f"detected_face_{face_counter}.png")
         cv2.imwrite(face_file_path, face_img)
         print(f"Saved: {face_file_path}")
         face_counter += 1  # Increment the counter for the next face
