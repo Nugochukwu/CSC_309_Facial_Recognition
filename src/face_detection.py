@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 # Global counter for unique face filenames
 face_counter = 1
 
-def detect_face_and_display(image_path, output_dir,choice, image_name):
+
+def detect_face_and_display(image_path, output_dir,choice):
     global face_counter  # Use a global counter to ensure sequential naming
 
     if not os.path.exists(output_dir):
@@ -33,11 +34,15 @@ def detect_face_and_display(image_path, output_dir,choice, image_name):
         choice = int(choice)
         if choice == 2:
             face_file_path = os.path.join(output_dir, f"dataset_face_{face_counter}.png")
+            cv2.imwrite(face_file_path, face_img)
+            print(f"Saved: {face_file_path}")
+            face_counter += 1  # Increment the counter for the next face
+
         elif choice == 1:
             face_file_path = os.path.join(output_dir, f"detected_face_{face_counter}.png")
-        cv2.imwrite(face_file_path, face_img)
-        print(f"Saved: {face_file_path}")
-        face_counter += 1  # Increment the counter for the next face
+            cv2.imwrite(face_file_path, face_img)
+            print(f"Saved: {face_file_path}")
+            face_counter += 1  # Increment the counter for the next face
 
     # Draw bounding boxes and display the image
     for (x, y, w, h) in faces:
@@ -47,5 +52,5 @@ def detect_face_and_display(image_path, output_dir,choice, image_name):
     plt.figure(figsize=(10, 5))
     plt.imshow(img_rgb)
     plt.axis('off')
-   # plt.show()
+    # plt.show()
     plt.close()
