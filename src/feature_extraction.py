@@ -1,3 +1,13 @@
+"""
+    extracts features from the face and returns the 128D feature vector
+
+    Parameters:
+    - image_path: Path to the new image.
+
+    Returns:
+    - nil
+"""
+
 import cv2
 import dlib
 import numpy as np
@@ -8,6 +18,7 @@ import pickle
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SHAPE_PREDICTOR_PATH = os.path.join(BASE_DIR, "shape_predictor_68_face_landmarks.dat")
 FACE_RECOGNITION_MODEL_PATH = os.path.join(BASE_DIR, "dlib_face_recognition_resnet_model_v1.dat")
+
 
 def extract_features(image_path):
     # Load models
@@ -21,10 +32,11 @@ def extract_features(image_path):
         print("Error: Image not found.")
         return
 
+    # converts the image to a grey scale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = detector(gray)
 
-    # Extract features
+    # loops over each face and Extracts features
     for face in faces:
         shape = shape_predictor(gray, face)
         face_descriptor = face_recognizer.compute_face_descriptor(image, shape)
