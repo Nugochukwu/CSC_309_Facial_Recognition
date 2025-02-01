@@ -56,11 +56,9 @@ Directory Structure
 ```
 CSC_309_Facial_Recognition/
 
-├── authorised_personnel_data  # pictures of authorised people
-│   └── Authorised_man1.jpg    # Example input authorised image
 ├── dataset                    # Faces that are allowed access
 ├── detected_faces             # Faces detected
-├── pictures/                  # pictures of people
+├── pictures/                  # Folder for images
 │   └── man1.jpg               # Example input image
 ├── Docs                       # Documentation
 ├── src/                       # Source code folder
