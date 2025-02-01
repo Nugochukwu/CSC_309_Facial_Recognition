@@ -1,0 +1,128 @@
+Facial Recognition System: Methodology & Execution Guide
+1. Overview
+This is a facial recognition system that detects faces in images, extracts facial features, and matches detected faces with a known dataset. The system uses OpenCV, Dlib, and a pre-trained face recognition model to perform these tasks.
+
+2. Methodology
+A. Face Detection
+Model Used: OpenCV's Haar Cascade Classifier (haarcascade_frontalface_default.xml).
+
+Process:
+Read the image using cv2.imread().
+Convert it to grayscale (cv2.cvtColor()).
+Apply the Haar Cascade face detector to locate faces in the image.
+If faces are found, crop and save them in the appropriate directory (detected_faces/ or dataset/).
+
+B. Feature Extraction
+Model Used: Dlib’s ResNet-based Face Recognition Model (dlib_face_recognition_resnet_model_v1.dat).
+
+Process:
+Detect facial landmarks using shape_predictor_68_face_landmarks.dat.
+Extract a 128-dimensional feature vector (face embedding) using the pre-trained Dlib model.
+Store the extracted features in a pickle database (face_database.pkl).
+
+C. Face Matching
+Model Used: Euclidean Distance for similarity measurement.
+
+Process:
+Extract features from a newly detected face.
+Compare them with stored feature vectors in face_database.pkl.
+Compute the Euclidean distance between feature vectors.
+If the distance is below a threshold (default: 0.6), the face is considered a match.
+3. System Workflow
+A. Directory Structure
+
+project_directory/
+│── src/
+│   ├── face_detection.py
+│   ├── feature_extraction.py
+│   ├── face_matching.py
+│── authorised_personnel_data/  # Images of authorized personnel
+│── pictures/                   # Images for detection
+│── dataset/                     # Faces stored in the database
+│── detected_faces/               # Detected faces
+│── face_database.pkl             # Serialized face data
+│── main.py                      # Main script
+B. How It Works
+User selects an option from the menu (detect faces, save to dataset, clear database, match faces, etc.).
+Images are processed based on user choice:
+Faces are detected and stored.
+Features are extracted and stored in the database.
+New faces are matched against stored faces.
+Output is displayed to show detected faces, extracted features, and match results.
+4. Running the Program
+A. Prerequisites
+Install dependencies:
+
+pip install opencv-python dlib numpy matplotlib
+Ensure the required Dlib model files are present:
+shape_predictor_68_face_landmarks.dat
+dlib_face_recognition_resnet_model_v1.dat
+
+Running the script:
+python main.py
+
+WELCOME TO OUR FACIAL RECOGNITION PROJECT.
+What would you like to do?
+1. Save detected faces to 'detected_faces/'
+2. Save detected faces to 'dataset/'
+3. Clear database
+4. Save dataset to database
+5. Match detected faces with dataset faces
+0. Exit
+Enter your choice (1, 2, 3, 4, or 5):
+
+B. Example Workflows
+1️⃣ Detect Faces and Save to 'detected_faces/'
+Input: A folder of images (pictures/).
+Command:
+
+Enter your choice (1, 2, 3, 4, or 5): 1
+
+Output:
+
+Processing image1.jpg...
+✅ Detected 1 face(s).
+Saved: detected_faces/detected_face_1.png
+2️⃣ Save Detected Faces to 'dataset/'
+
+Input: Images from authorised_personnel_data/.
+Command:
+
+Enter your choice (1, 2, 3, 4, or 5): 2
+Output:
+
+Processing employee1.jpg...
+✅ Face saved: dataset/dataset_face_1.png
+3️⃣ Clear the Database
+Command:
+
+Enter your choice (1, 2, 3, 4, or 5): 3
+Output:
+
+Clearing database.
+✅ Database cleared.
+4️⃣ Save Dataset to Database
+Command:
+
+Enter your choice (1, 2, 3, 4, or 5): 4
+Output:
+
+Processing dataset_face_1.png...
+✅ Features for dataset_face_1.png added to the database.
+📌 Total known faces: 1
+5️⃣ Match Detected Faces
+Command:
+
+Enter your choice (1, 2, 3, 4, or 5): 5
+Output:
+
+Processing detected_face_1.png...
+✅ Best match: employee1.jpg (Distance: 0.48, Similarity: 0.68)
+
+
+6. Summary
+Detect faces in images (Haar Cascade).
+Extract features using a Dlib ResNet model.
+Match faces using Euclidean distance.
+Store known faces in face_database.pkl.
+Simple CLI interface for user interaction.
