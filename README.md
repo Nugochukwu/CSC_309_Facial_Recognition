@@ -56,21 +56,22 @@ Directory Structure
 ```
 CSC_309_Facial_Recognition/
 
-├── dataset                    # Faces that are allowed access
-├── detected_faces             # Faces detected
-├── pictures/                  # Folder for images
-│   └── man1.jpg               # Example input image
-├── Docs                       # Documentation
-├── src/                       # Source code folder
+project_directory/
+│── src/
 │   ├── __init__.py            # Marks the directory as a package
-│   ├── face_detection.py                           #
-    ├── face_extraction.py                          #
-    ├── face_matching.py                            # Contains the detect_face_and_display function
-    ├── dlib_face_recognition_resnet_model_v1.dat   #
-    ├── shape_predictor_68_face_landmarks.dat       #
-    ├── dlib_face_recognition_resnet_model_v1.dat   #
-    ├── dlib_face_recognition_resnet_model_v1.dat   #
-├── main.py                    # Main entry point
+│   ├── face_detection.py                           
+    ├── face_extraction.py                          
+    ├── face_matching.py                            
+    ├── dlib_face_recognition_resnet_model_v1.dat   
+    ├── shape_predictor_68_face_landmarks.dat
+│── authorised_personnel_data/  # Images of authorized personnel
+│── authorised_personnel_data/  # Images of authorized personnel
+│── pictures/                   # Images for detection
+│── dataset/                     # Faces stored in the database
+│── detected_faces/               # Detected faces
+│── face_database.pkl             # Serialized face data
+│── main.py                      # Main script
+
 
 ```
 ## Run the program using
