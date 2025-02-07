@@ -79,3 +79,5 @@ project_directory/
 ```
 python main.py
 ```
+`After runnin each process the program needs to be restarted for it to update.
+The next time the program is run the changes will be visible`
