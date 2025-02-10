@@ -43,7 +43,7 @@ pip install dlib
 if you're encountering issues with building it from source, you can use `.whl (wheel)` files, which are precompiled binaries.
 ---
 Go to an unofficial dlib binaries repository:
-One popular repository is: https://github.com/jeremiah-williams/dlib-windows-binaries.
+One popular repository is: https://github.com/jeremiah-williams/dlib-windows-binaries
 The .whl file corresponds to your Python version and operating system. For example, if you're using Python 3.8 on a 64-bit Windows machine, you should look for a file named like dlib-19.22.0-cp38-cp38-win_amd64.whl
 
 Run `python --version`to check which version of Python you're using, and make sure the `.whl` file matches your Python version.
